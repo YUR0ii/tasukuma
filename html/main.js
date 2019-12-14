@@ -96,5 +96,3 @@ slot:
 */
 
 load_data();
-
-setInterval(game_loop, 1000);
