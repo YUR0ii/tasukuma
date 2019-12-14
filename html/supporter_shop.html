@@ -15,6 +15,7 @@
 		<script>
 			document.getElementById("num_supporters").textContent = "Supporters: " + window.scores.supporters;
 			document.querySelector("#highway_button").setAttribute("max", window.scores.supporters);
+			document.querySelector("#highway_button").setAttribute("value", window.scores.highway);
 
 			function exit() {
 				window.scores.highway = document.getElementById("highway_button").value;

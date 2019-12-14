@@ -15,6 +15,7 @@
 		<script>
 			document.getElementById("num_money").textContent = "Money: " + window.scores.money;
 			document.querySelector("#ice_rink").setAttribute("max", window.scores.money);
+			document.querySelector("#ice_rink").setAttribute("value", window.scores.ice_ink);
 
 			function exit() {
 				window.scores.ice_rink = document.getElementById("ice_rink").value;
