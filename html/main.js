@@ -2,7 +2,12 @@ var current_max_slot_id = 0;
 
 function populate_slots() {
     var slots_container = document.querySelector("#slots-list");
-    delete slots_container.children;
+    if(slots_container.children.length > 0) {
+        for(var child in slots_container.children) {
+            var c = slots_container.children[child];
+            slots_container.removeChild(c);
+        }
+    }
     for (var slot in window.slots) {
         var child = document.createElement("div");
         if (!window.slots[slot].id) window.slots[slot].id = current_max_slot_id++;
@@ -30,8 +35,9 @@ function save_data() {
 }
 
 function load_slots() {
+    if(localStorage.slots = "undefined") localStorage.slots = "[]";
     window.slots = localStorage.slots ? JSON.parse(localStorage.slots) : [];
-    current_max_slot_id = window.slots[window.slots.length - 1].id + 1;
+    current_max_slot_id = window.slots.length > 0 ? window.slots[window.slots.length - 1].id + 1 : 0;
 
 }
 
@@ -48,6 +54,7 @@ function add_test_slot() {
         bear_state: null
     });
     save_data();
+    populate_slots();
 }
 
 function add_test_money(amount = 1) {
