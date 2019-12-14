@@ -17,23 +17,26 @@ function load_values() {
     var money_value = document.querySelector("#money");
     var supporters_value = document.querySelector("#supporters");
 
-    money_value.textContent = "$" + window.money;
-    supporters_value.textContent = window.supporters + " supporters";
+    if(!window.scores.money) window.scores.money = 100;
+    if(!window.scores.supporters) window.scores.supporters = 0;
+
+    money_value.textContent = "$" + window.scores.money;
+    supporters_value.textContent = window.scores.supporters + " supporters";
 }
 
 function save_data() {
     localStorage.slots = JSON.stringify(window.slots);
-    localStorage.money = window.money;
-    localStorage.supporters = window.supporters;
+    localStorage.scores = JSON.stringify(window.scores);
+}
+
+function load_slots() {
+    window.slots = localStorage.slots ? JSON.parse(localStorage.slots) : [];
+    current_max_slot_id = window.slots[window.slots.length - 1].id + 1;
+
 }
 
 function load_data() {
-    window.slots = localStorage.slots ? JSON.parse(localStorage.slots) : [];
-    window.money = localStorage.money ? parseInt(localStorage.money) : 0;
-    window.supporters = localStorage.supporters ? parseInt(localStorage.supporters) : 0;
-
-    current_max_slot_id = window.slots[window.slots.length - 1].id + 1;
-
+    window.scores = localStorage.scores ? JSON.parse(localStorage.scores) : {};    
 }
 
 function add_test_slot() {
@@ -48,25 +51,39 @@ function add_test_slot() {
 }
 
 function add_test_money(amount = 1) {
-    window.money += amount;
+    window.scores.money += amount;
     save_data();
     load_values();
 }
 
 function add_test_supporters(amount = 1) {
-    window.supporters += amount;
+    window.scores.supporters += amount;
     save_data();
     load_values();
 }
 
 function load_game() {
     load_data();
+    load_slots();
     load_values();
     populate_slots();
 }
 
 function redirect(url) {
+    save_data();
+    window.location.href = url;
+}
 
+function game_loop() {
+    if(!window.scores.money_increment) window.scores.money_increment = 0;
+    if(!window.scores.supporter_increment) window.scores.supporter_increment = 1;
+
+    if(!window.scores.money) window.scores.money = 100;
+    if(!window.scores.supporters) window.scores.supporters = 0;
+    window.scores.money += window.scores.money_increment;
+    window.scores.supporters += window.scores.supporter_increment;
+    save_data();
+    load_values();
 }
 
 /*
@@ -79,3 +96,5 @@ slot:
 */
 
 load_data();
+
+setInterval(game_loop, 1000);
