@@ -1,0 +1,15 @@
+{
+	"Name":"Ice Hole",
+	"Cost":500,
+	"Image":10
+}
+{
+	"Name":"Placeholder Item",
+	"Cost":5000,
+	"Image":50
+}
+{
+	"Name":"Tour Service",
+	"Cost":"1000000",
+	"Image":"5000"
+}
