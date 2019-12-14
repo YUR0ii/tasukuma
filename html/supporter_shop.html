@@ -13,8 +13,8 @@
 		<p>Clean up highway</p> <input type="number" id="highway_button" min="0" value="0" max="0">
 
 		<script>
-			document.getElementById("num_supporters").textContent = "Supporters: " + window.supporters;
-			document.querySelector(".button").setAttribute("max", window.supporters);
+			document.getElementById("num_supporters").textContent = "Supporters: " + window.scores.supporters;
+			document.querySelector("#highway_button").setAttribute("max", window.scores.supporters);
 
 			function exit() {
 				window.scores.highway = document.getElementById("highway_button").value;

@@ -1,0 +1,25 @@
+<html>
+	<head>
+		<script src="main.js"></script>
+		<style>
+			body {
+				background-image: url(resources/bear_shop.png);
+			}
+		</style>
+	</head>
+	<body>
+		<button onClick="exit()">Exit Supporters</button>
+		<p id="num_money"></p>
+		<p>Ice rink</p> <input type="number" id="ice_rink" min="0" value="0" max="0">
+
+		<script>
+			document.getElementById("num_money").textContent = "Money: " + window.scores.money;
+			document.querySelector("#ice_rink").setAttribute("max", window.scores.money);
+
+			function exit() {
+				window.scores = document.getElementById("ice_rink").value;
+				redirect("./index.html");
+			}
+		</script>
+	</body>
+</html>
