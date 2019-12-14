@@ -28,8 +28,10 @@ function load_values() {
     supporters_value.textContent = window.scores.supporters + " supporters";
 }
 
-function save_data() {
+function save_slots() {
     localStorage.slots = JSON.stringify(window.slots);
+}
+function save_data() {
     localStorage.scores = JSON.stringify(window.scores);
 }
 
@@ -51,6 +53,7 @@ function add_test_slot() {
         bear_state: null
     });
     save_data();
+    save_slots();
     populate_slots();
 }
 
