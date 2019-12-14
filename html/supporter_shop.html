@@ -1,0 +1,25 @@
+<html>
+	<head>
+		<script src="main.js"></script>
+		<style>
+			body {
+				background-image: url(resources/bear_shop.png);
+			}
+		</style>
+	</head>
+	<body>
+		<button onClick="exit()">Exit Supporters</button>
+		<p id="num_supporters"></p>
+		<p>Clean up highway</p> <input type="number" id="highway_button" min="0" value="0" max="0">
+
+		<script>
+			document.getElementById("num_supporters").textContent = "Supporters: " + window.supporters;
+			document.querySelector(".button").setAttribute("max", window.supporters);
+
+			exit() {
+				window.Scores.highway = document.getElementById("highway_button").value;
+				redirect("./index.html");
+			}
+		</script>
+	</body>
+</html>
